@@ -12,10 +12,11 @@
 <nav class="navbar navbar-dark bg-dark-blue">
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">✂️ Agenda Admin</a>
-    </div><div class="d-flex gap-2">
-        <a class="btn btn-outline-light" th:href="@{/admin/painel-agenda}">Painel</a>
-        <a class="btn btn-outline-light" th:href="@{/admin/logout}">Sair</a>
-        <a class="btn btn-outline-light btn-sm" th:href="@{/agendar}">Cliente</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-outline-light" th:href="@{/admin/painel-agenda}">Painel</a>
+            <a class="btn btn-outline-light" th:href="@{/admin/logout}">Sair</a>
+            <a class="btn btn-outline-light btn-sm" th:href="@{/agendar}">Cliente</a>
+        </div>
     </div>
     </nav>
 
@@ -37,7 +38,7 @@
                     <label class="form-label">Período</label>
                     <select class="form-select" name="periodo">
                         <option value="" selected>Todos</option>
-                        <option value="DIA" selected>Dia</option>
+                        <option value="DIA">Dia</option>
                         <option value="SEMANA">Semana</option>
                         <option value="manha">Manhã</option>
                         <option value="tarde">Tarde</option>
@@ -69,7 +70,7 @@
                             <td th:text="${agendamento.codigo}"></td>
                             <td th:text="${agendamento.barbeiro.nome}"></td>
                             <td th:text="${agendamento.servico.nome}"></td>
-                            <td th:text="${#dates.format(agendamento.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+                            <td th:text="${#temporals.format(agendamento.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
                             <td th:text="${agendamento.status}"></td>
                             <td>
                                 <a th:href="@{/admin/editar-agendamento(agendamentoId=${agendamento.id})}" class="btn btn-sm btn-primary">Editar</a>
@@ -82,5 +83,6 @@
         </div>
     </div>
 </main>
-
-
+<footer th:replace="~{layout/fragments/footer :: footer}"></footer>
+</body>
+</html>

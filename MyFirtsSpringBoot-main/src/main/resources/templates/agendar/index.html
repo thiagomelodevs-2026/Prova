@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Agendar Atendimento</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" />
-    <footer th:replace="~{layout/fragments/footer :: footer}"></footer>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
 </head>
-<body>
+<body class="bg-dark-900">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue shadow-sm">
 
     <div class="container">
@@ -20,12 +20,12 @@
     </div>
 </nav>
 <header class="hero">
-    div class="hero-overlay"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content container">
         <h1 class="display-6 fw-bold">Agende seu horário com facilidade</h1>
         <p class="lead mb-0">Selecione barbeiro, serviço e horário disponível. Sem login.</p>
     </div>
-    <img class="hero-img" th:src="@{/images/barbearia-hero.jpg}" alt="Barbearia">
+    <img class="hero-img" th:src="@{/images/barbearia-hero.jpeg}" alt="Interior da barbearia">
 </header>
 
 <main class="container py-4">
@@ -37,7 +37,7 @@
                     <h2 class="h4 mb-3">Novo Agendamento</h2>
                     <!-- DCU 001: Cliente informa dados e confirma -->
                     <!-- A ação do form será implementada no backend: POST /agendamentos -->
-                    <form th:action="@{/agendamentos}" method="post" th:object="${agendamentoForm}">
+                    <form th:action="@{/agendamentos}" method="post">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label">Barbeiro</label>
@@ -46,8 +46,7 @@
                                     <!-- depois o backend preenche lista -->
                                     <option th:each="b : ${barbeiros}"
                                             th:value="${b.id}"
-                                            th:text="${b.nome}">
-                                </option>
+                                            th:text="${b.nome}"></option>
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -56,8 +55,7 @@
                                     <option value="" selected disabled>Selecione...</option>
                                     <option th:each="s : ${servicos}"
                                             th:value="${s.id}"
-                                            th:text="${s.nome + ' (' + s.duracaoMin + 'min)'}">
-                                </option>
+                                            th:text="${s.nome + ' (' + s.duracaoMin + 'min)'}"></option>
                                 </select>
                             </div>
 
@@ -99,13 +97,8 @@
         </div>
     </div>
 </main>
-<footer class="footer mt-auto py-4">
-    <div class="container text-center text-muted">
-        © <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span> Barbearia
-    </div>
-</footer>
+<footer th:replace="~{layout/fragments/footer :: footer}"></footer>
 </body>
 </html>
-
 
 
